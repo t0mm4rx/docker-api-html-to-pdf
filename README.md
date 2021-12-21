@@ -10,7 +10,7 @@ Runs with ubuntu 20.04 and Python.
 ```sh
 # Build and run the API
 docker build -t html-to-pdf-api .
-docker run -p 8080:80 html-to-pdf-api
+docker run -p 8080:5000 html-to-pdf-api
 
 # Client-side
 curl localhost:8080/pdf?url=https://google.com&args=-n --viewport-size 1200

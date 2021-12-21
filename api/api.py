@@ -30,4 +30,4 @@ api = Api(app)
 
 api.add_resource(PDF, "/pdf")
 
-app.run()
+app.run(host="0.0.0.0")
