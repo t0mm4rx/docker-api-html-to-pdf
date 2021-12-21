@@ -17,11 +17,13 @@ class PDF(Resource):
 			args['args'] = ""
 
 		now = datetime.now()
-		filename = hashlib.md5(str.encode(f"{args['url']}-{now.month}-{now.year}")).hexdigest() + ".pdf"
+		filename = hashlib.md5(str.encode(f"{args['url']}-{now.month}-{now.year}")).hexdigest() + hashlib.md5(str.encode(args['args'])).hexdigest() + ".pdf"
 
 		if (not os.path.isfile(filename)):
 			job = subprocess.Popen(f"wkhtmltopdf {args['args']} {args['url']} {filename}", shell=True)
 			job.wait()
+			if (job.returncode != 0):
+				return f"Wrong command: wkhtmltopdf {args['args']} {args['url']}", 400
 
 		return send_from_directory("./", filename)
 
