@@ -1,7 +1,5 @@
 FROM ubuntu:20.04
-
-ENV TZ=Europe/Paris
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update
 RUN apt-get install -y wkhtmltopdf python3.9 python3-pip
